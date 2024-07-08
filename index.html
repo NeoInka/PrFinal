@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Resiliencia Estructural</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body class="dark-mode">
+    <header>
+        <h1 id="title">Calculadora de Resiliencia Estructural</h1>
+        <div class="controls">
+            <button id="modeToggle">Modo Claro</button>
+            <select id="languageSelector" onchange="changeLanguage()">
+                <option value="es">Español</option>
+                <option value="en">Inglés</option>
+                <option value="qu">Quechua</option>
+                <option value="ay">Aymara</option>
+            </select>
+        </div>
+    </header>
+
+    <section id="calculator">
+        <div class="form-container">
+            <form id="resilienceCalculator">
+                <div class="input-group">
+                    <label for="capacity" id="capacity-label">Capacidad de Carga (kN):</label>
+                    <button type="button" class="info-btn" onclick="showConcept('concept-capacity')">?</button>
+                </div>
+                <input type="number" id="capacity" name="capacity" max="600" required>
+
+                <div class="input-group">
+                    <label for="length" id="length-label">Longitud del Puente (m):</label>
+                    <button type="button" class="info-btn" onclick="showConcept('concept-length')">?</button>
+                </div>
+                <input type="number" id="length" name="length" max="200" required>
+
+                <div class="input-group">
+                    <label for="weight" id="weight-label">Peso del Puente (T):</label>
+                    <button type="button" class="info-btn" onclick="showConcept('concept-weight')">?</button>
+                </div>
+                <input type="number" id="weight" name="weight" max="100" required>
+
+                <div class="input-group">
+                    <label for="temperature" id="temperature-label">Temperatura del Entorno (°C):</label>
+                    <button type="button" class="info-btn" onclick="showConcept('concept-temperature')">?</button>
+                </div>
+                <input type="number" id="temperature" name="temperature" max="40" required>
+
+                <button type="button" onclick="calculateResilience()" id="calculate-btn">Calcular Resiliencia</button>
+                <button type="button" onclick="resetForm()" id="reset-btn">Reiniciar</button>
+            </form>
+
+            <div id="result">
+                <h3 id="result-title">Resultado:</h3>
+                <p id="resilienceOutput"></p>
+                <p id="interpretationOutput"></p>
+            </div>
+        </div>
+
+        <div id="concepts">
+            <div class="concept" id="concept-capacity">
+                <h3 id="concept-capacity-title">Capacidad de Carga (kN)</h3>
+                <p id="concept-capacity-desc">La capacidad de carga refleja la resistencia máxima del puente antes de la falla estructural. Unidad: kilonewtons (kN)</p>
+            </div>
+            <div class="concept" id="concept-length">
+                <h3 id="concept-length-title">Longitud del Puente (m)</h3>
+                <p id="concept-length-desc">La longitud del puente afecta la distribución de la carga y la estabilidad del puente. Unidad: metros (m)</p>
+            </div>
+            <div class="concept" id="concept-weight">
+                <h3 id="concept-weight-title">Peso del Puente (T)</h3>
+                <p id="concept-weight-desc">El peso del puente influye en la estabilidad y la capacidad de la estructura para soportar su propio peso adicional a las cargas externas. Unidad: toneladas (T)</p>
+            </div>
+            <div class="concept" id="concept-temperature">
+                <h3 id="concept-temperature-title">Temperatura del Entorno (°C)</h3>
+                <p id="concept-temperature-desc">La temperatura del entorno es una variable crítica que afecta la integridad de los materiales del puente. Unidad: grados Celsius (°C)</p>
+            </div>
+        </div>
+
+        <div id="graph-container">
+            <div id="graph"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Proyecto de Resiliencia Estructural</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
